@@ -1,0 +1,75 @@
+<app-header></app-header>
+<h2 style="margin-left: 20px;">Welcome {{user.userName}}</h2>
+<div class="jumbotron text-center" style="background-color:#93e9be; border-radius: 13px;">
+    <span><h2><b>GoShare CarPool</b> </h2><h4>here to reduce your daily commute obstacles</h4></span>
+</div>
+<div style="margin: 20px;"><b><h3>Upcoming rides: {{upComingRides.length}}</h3></b></div>
+<div *ngFor="let item of upComingRides" class="search-result" >
+  <div class="search-card" *ngIf="!item.isCompleted">
+    <div class="search-card-from-to"><b style="padding: 0 5px;"></b>You have a Upcoming ride with <b>{{item.driverName}}</b></div>
+    <div class="search-card-from-to"><b>From: </b>{{item.start}}</div><h5 style="color: green;">O======O</h5>
+    <div class="search-card-from-to"><b>To: </b>{{item.end}}</div>
+  </div>
+</div> 
+<div style="display: flex; flex-direction: row-reverse; margin: 0 20px;"><button (click)="openPopup()" *ngIf="user.carOwner">Add Ride</button></div>
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title">Add a new Ride.</h2><h2 style="text-align: left; right: 0;color: red; cursor: pointer;padding: 3px; margin-left: 220px;"(click)=closePopup()>X</h2>
+      </div>
+      <div class="modal-body">
+          <div class="search-label"><b> Start at:  </b></div>
+           <div >
+            <form><select name="startingPoint" id="Point" (change)="newSetStart($event)"><option *ngFor="let destination of destinations"  default="Select start">{{destination}}</option></select>
+            </form>
+          </div>
+          <div class="search-label"><b> Till:   </b></div>
+           <div >
+            <form><select name="till" id="ToPoint" (change)="newSetEnd($event)" ><option  *ngFor="let destination of destinations">{{destination}}</option></select>
+            </form>
+          </div>
+          <div class="search-label"><b> Start At Time:</b></div>
+          <input type="time" class="time-input" [(ngModel)]="newRideTime">
+  
+      </div>
+      <div class="modal-footer">
+        <button (click)="addCar()"type="button">Add Ride</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="search-container">
+  <div class="search-label"><b>Start at:  </b></div>
+   <div >
+    <form><select name="startingPoint" id="Point" (change)="setStart($event)"><option  *ngFor="let destination of destinations" >{{destination}}</option></select>
+    </form>
+  </div>
+  <div class="search-label"><b>Till:   </b></div>
+   <div >
+<form><select name="startingPoint" id="Point" (change)="setEnd($event)"><option  *ngFor="let destination of destinations">{{destination}}</option></select>
+    </form>
+  </div>
+  <div class="search-label"><b>Start At:</b></div>
+  <input type="time" class="time-input" [(ngModel)]="searchTime">
+  <div class="search-button" (click)="search()"><button>Search Rides</button></div>
+</div>
+
+<div style="margin: 20px;"><b><h3>Available Rides: {{result.length}}</h3></b></div>
+<div *ngFor="let item of result" class="search-result">
+  <div class="search-card">
+    <div class="search-card-from-to"><b style="padding: 0 5px;">{{item.driverName}}</b>is going</div>
+    <div class="search-card-from-to"><b>From: </b>{{item.start}}</div><h5 style="color: green;">O======O</h5>
+    <div class="search-card-from-to"><b>To: </b>{{item.end}}</div>
+    <div class="search-card-from-to"><b style="padding: 0 10px;">At: </b>{{item.timing}}</div>
+    <button class="buttonn" (click)="poolIn(item)">Pool In</button>
+  </div>
+</div> 
+    
+
+
+<div class="footer1">
+   <p>Copy rights@2023 </p>
+  </div>

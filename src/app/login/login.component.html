@@ -1,0 +1,22 @@
+<div class="flex-container">
+  <div class="image-container"><img src="https://img.freepik.com/free-vector/car-sharing-concept-illustration_114360-15011.jpg">
+  </div>
+<div class="login-container">
+    <h1>Login</h1>
+    <form>
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" [(ngModel)]="username" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" [(ngModel)]="password" required>
+      </div>
+      <div class="form-group">
+        <div style="font-size: 14px;"> New User? <a [routerLink]="['/signup']">SignUp.</a></div>
+        <div style="text-align: right; "><button type="submit" (click)="validate()">Login</button></div>
+      </div>
+    </form>
+  </div>
+  </div>
+  <label *ngIf="mismatch" style="margin:20px 520px;color:red; width:20%;font-size: 20px;">No such user found.</label>

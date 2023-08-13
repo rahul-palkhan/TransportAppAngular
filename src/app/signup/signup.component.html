@@ -1,0 +1,29 @@
+<h2 *ngIf="success" style="color:green; background-color: lightgreen; width:15%;border-radius: 5px;margin: 10px;padding: 15px;" >User added</h2>
+<div class="flex-container">
+  
+  <div class="login-container">
+      <h1>New User SignUp</h1>
+      <form>
+        <div class="form-group"><h3>
+            <label *ngIf="mismatch" style="color:red;">Password mismatch</label><br>
+          <label for="username">Username</label>
+          <input type="text"  name="username" [(ngModel)]="username" required>
+          <label for="password">Password</label>
+          <input type="password"  name="password" [(ngModel)]="password" required>
+          <label for="re-password">Re-enter Password</label>
+          <input type="password"  name="re-password" [(ngModel)]="rpassword" required></h3>
+        </div>
+        <div>
+            <h3><p>I am a:</p></h3>
+            <h4>
+             <input type="radio" id="carOwner" name="userType" value="carOwner" (click)="owner()" required>
+             &nbsp;<label for="carOwner"> CAR OWNER</label><br>
+             <input type="radio" id="rider" name="userType" value="rider" (click)="rider()" required>
+             &nbsp; <label for="rider"> RIDER</label><br></h4>
+             <div class="form-group" style="text-align: right; "><button type="submit" (click)="validate()">SignUp</button></div>
+        </div>
+      </form>
+    </div>
+    </div>
+
+    <a *ngIf="success" style="color:green; background-color: lightgreen; width:15%;border-radius: 5px;margin: 10px;padding: 15px;" [routerLink]="['/login']">Take me back to login.</a>
